@@ -69,8 +69,17 @@ class THCameraController: NSObject {
         return device
     }
 
-    var cameraHasTorch : Bool!
-    var cameraHasFlash : Bool!
+    var cameraHasTorch : Bool!{
+        get{
+            return self.activeCamera.hasTorch
+        }
+    }
+    var cameraHasFlash : Bool!{
+        get{
+            return self.activeCamera.hasFlash
+        }
+    }
+    
     var cameraSupportsTapToFocus : Bool!{
         get{
             return self.activeCamera.focusPointOfInterestSupported
@@ -81,8 +90,16 @@ class THCameraController: NSObject {
             return self.activeCamera.exposurePointOfInterestSupported
         }
     }
-    var torchMode : AVCaptureTorchMode!
-    var flashMode : AVCaptureFlashMode!
+    var torchMode : AVCaptureTorchMode!{
+        get{
+            return self.activeCamera.torchMode
+        }
+    }
+    var flashMode : AVCaptureFlashMode!{
+        get{
+            return self.activeCamera.flashMode
+        }
+    }
     
     // page 181
     var videoQueue : dispatch_queue_t!
@@ -93,7 +110,7 @@ class THCameraController: NSObject {
     var movieOutput : AVCaptureMovieFileOutput!
     var outputURL : NSURL!
     
-    
+    var captureImage : UIImage?
     
     
     // Session Configuration
@@ -290,14 +307,123 @@ class THCameraController: NSObject {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }
     }
+    
+    // pg: 195   - (void)resetFocusAndExposureModes;
+    func resetFocusAndExposureModes(){
+        let device = self.activeCamera
         
-    //    - (void)resetFocusAndExposureModes;
+        let focusMode = AVCaptureFocusMode.ContinuousAutoFocus
+        let canResetFocus = device.focusPointOfInterestSupported && device.isFocusModeSupported(focusMode)
+        
+        let exposureMode : AVCaptureExposureMode = AVCaptureExposureMode.ContinuousAutoExposure
+        let canResetExposure = device.exposurePointOfInterestSupported && device.isExposureModeSupported(exposureMode)
+        
+        let centerPoint = CGPointMake(0.5, 0.5)
+        
+        var error : NSError?
+        
+        if device.lockForConfiguration(&error){
+            if canResetFocus{
+                device.focusMode = focusMode
+                device.focusPointOfInterest = centerPoint
+            }
+            if canResetExposure{
+                device.exposureMode = exposureMode
+                device.exposurePointOfInterest = centerPoint
+            }
+            device.unlockForConfiguration()
+        }
+        else{
+            self.delegate.deviceConfigurationFailedWithError(error)
+        }
+    }
+    
+    
+    // flash and torch mode
+    func setFlashMode(flashMode : AVCaptureFlashMode){
+        let device = self.activeCamera
+        if device.isFlashModeSupported(flashMode){
+            var error : NSError?
+            if device.lockForConfiguration(&error){
+                device.flashMode = flashMode
+                device.unlockForConfiguration()
+            }
+            else{
+                self.delegate.deviceConfigurationFailedWithError(error)
+            }
+        }
+    }
+    
+    func setTorchhMode(torchMode : AVCaptureTorchMode){
+        let device = self.activeCamera
+        if device.isTorchModeSupported(torchMode){
+            var error : NSError?
+            if device.lockForConfiguration(&error){
+                device.torchMode = torchMode
+                device.unlockForConfiguration()
+            }
+            else{
+                self.delegate.deviceConfigurationFailedWithError(error)
+            }
+        }
+    }
+    
     
     /** Media Capture Methods **/
     
     // Still Image Capture
     
     //    - (void)captureStillImage;
+    
+    func captureStillImage(){
+        let connection : AVCaptureConnection = self.imageOutput.connectionWithMediaType(AVMediaTypeVideo)
+        
+        if connection.supportsVideoOrientation{
+            connection.videoOrientation = self.currentVideoOrientation()
+        }
+        
+        self.imageOutput.captureStillImageAsynchronouslyFromConnection(connection, completionHandler: { (sampleBuffer, error) -> Void in
+          
+            if sampleBuffer != nil {
+                let imageData : NSData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
+                let image : UIImage? = UIImage(data: imageData)
+                // editiona
+                if image != nil {
+                    println("image succefully captured")
+                    self.captureImage = image
+                }
+            }
+            else{
+                println("nil image sample buffer: \(error.localizedDescription)")
+            }
+        })
+        // Capture still image
+
+        
+    }
+    
+    // helper func
+    func currentVideoOrientation() -> AVCaptureVideoOrientation{
+        var orientation : AVCaptureVideoOrientation!
+        
+        switch (UIDevice.currentDevice().orientation){
+        case .Portrait:
+            orientation = AVCaptureVideoOrientation.Portrait
+        case .PortraitUpsideDown:
+            orientation = AVCaptureVideoOrientation.PortraitUpsideDown
+        case .LandscapeRight:
+            orientation = AVCaptureVideoOrientation.LandscapeLeft
+        case .LandscapeLeft:
+            orientation = AVCaptureVideoOrientation.LandscapeRight
+        default:
+            orientation = AVCaptureVideoOrientation.LandscapeRight
+
+        }
+        
+        return orientation
+    }
+    
+    
     
     // Video Recording
     
