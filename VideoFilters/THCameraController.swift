@@ -438,12 +438,14 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
     
     //pg: 203    - (void)startRecording;
     func startRecording(){
+        
         if !self.isRecording{
             let videoConnection : AVCaptureConnection = self.movieOutput.connectionWithMediaType(AVMediaTypeVideo)
             if videoConnection.supportsVideoOrientation{
                 videoConnection.videoOrientation = self.currentVideoOrientation()
             }
             if videoConnection.supportsVideoStabilization{
+                
                 videoConnection.enablesVideoStabilizationWhenAvailable = true
             }
             
@@ -461,6 +463,8 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
             }
             
             self.outputURL = self.uniqueURL()
+            println(movieOutput)
+            println(outputURL)
             self.movieOutput.startRecordingToOutputFileURL(self.outputURL, recordingDelegate: self)
             
         }
@@ -475,17 +479,18 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
     
     // helper func
     func uniqueURL() -> NSURL?{
-        let fileManager = NSFileManager.defaultManager()
         
-        let paths = NSSearchPathForDirectoriesInDomains(
-            .DocumentDirectory, .UserDomainMask, true)
+        var formatter: NSDateFormatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd-HH-mm-ss"
+        let dateTimePrefix: String = formatter.stringFromDate(NSDate())
+        
+        let fileManager = NSFileManager.defaultManager()
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let documentsDirectory = paths[0] as? String
         
         if documentsDirectory != nil {
         
-            var filePath:String? = documentsDirectory!.stringByAppendingPathComponent("kamera_movie.mov")
-            
-            
+            var filePath:String? = documentsDirectory!.stringByAppendingPathComponent("kamera_movie\(dateTimePrefix).mov")
             return NSURL(fileURLWithPath: filePath!)!
         }
         
@@ -507,6 +512,8 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
             }
             library.writeVideoAtPathToSavedPhotosAlbum(videoURL, completionBlock: { (url, error) -> Void in
                 println("video write")
+
+                
             })
             
         }

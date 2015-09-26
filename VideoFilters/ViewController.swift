@@ -62,5 +62,21 @@ class ViewController: UIViewController, THPreviewViewDelegate {
     }
     
 
+    
+    
+    @IBAction func picture(sender: UIButton) {
+        self.cameraController.captureStillImage()
+    }
+    
+    @IBAction func start(sender: UIButton) {
+        self.cameraController.startRecording()
+    }
+    
+    @IBAction func stop(sender: UIButton) {
+        self.cameraController.stopRecording()
+    }
+    
+    
+    
 }
 
