@@ -16,6 +16,7 @@
 		424AFD5E1B99BD020091E9A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 424AFD5C1B99BD020091E9A9 /* LaunchScreen.xib */; };
 		424AFD6A1B99BD020091E9A9 /* VideoFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424AFD691B99BD020091E9A9 /* VideoFiltersTests.swift */; };
 		424AFD781B99BDA30091E9A9 /* AudioVideoMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424AFD771B99BDA30091E9A9 /* AudioVideoMerge.swift */; };
+		42AB29D31BB6BEA30002B22A /* THCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AB29D21BB6BEA30002B22A /* THCameraView.swift */; };
 		42D416ED1BB5B61B0077C7E3 /* THCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D416EC1BB5B61B0077C7E3 /* THCameraController.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		424AFD681B99BD020091E9A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		424AFD691B99BD020091E9A9 /* VideoFiltersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFiltersTests.swift; sourceTree = "<group>"; };
 		424AFD771B99BDA30091E9A9 /* AudioVideoMerge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioVideoMerge.swift; sourceTree = "<group>"; };
+		42AB29D21BB6BEA30002B22A /* THCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCameraView.swift; sourceTree = "<group>"; };
 		42D416EC1BB5B61B0077C7E3 /* THCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCameraController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 		423A78FD1BB5251800082AEB /* Chap6 */ = {
 			isa = PBXGroup;
 			children = (
+				42AB29D21BB6BEA30002B22A /* THCameraView.swift */,
 				423A78FB1BB5251300082AEB /* THPreviewView.swift */,
 				42D416EC1BB5B61B0077C7E3 /* THCameraController.swift */,
 			);
@@ -234,6 +237,7 @@
 			files = (
 				423A78FC1BB5251300082AEB /* THPreviewView.swift in Sources */,
 				424AFD561B99BD020091E9A9 /* ViewController.swift in Sources */,
+				42AB29D31BB6BEA30002B22A /* THCameraView.swift in Sources */,
 				42D416ED1BB5B61B0077C7E3 /* THCameraController.swift in Sources */,
 				423A78FA1BB51F0800082AEB /* MyVideoFilter.swift in Sources */,
 				424AFD541B99BD020091E9A9 /* AppDelegate.swift in Sources */,

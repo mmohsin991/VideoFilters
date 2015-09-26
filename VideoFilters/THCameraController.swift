@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import AssetsLibrary
 
 
 //let const : THThumbnailCreatedNotification?
@@ -27,7 +28,7 @@ protocol THCameraControllerDelegate {
 
 
 // page no 180
-class THCameraController: NSObject {
+class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
     
     var delegate : THCameraControllerDelegate!
     var captureSession: AVCaptureSession!
@@ -100,6 +101,14 @@ class THCameraController: NSObject {
             return self.activeCamera.flashMode
         }
     }
+    // pg:203  - (BOOL)isRecording;
+    var isRecording : Bool{
+        get{
+            return self.movieOutput.recording
+        }
+    }
+    
+    
     
     // page 181
     var videoQueue : dispatch_queue_t!
@@ -427,9 +436,118 @@ class THCameraController: NSObject {
     
     // Video Recording
     
-    //    - (void)startRecording;
-    //    - (void)stopRecording;
-    //    - (BOOL)isRecording;
+    //pg: 203    - (void)startRecording;
+    func startRecording(){
+        if !self.isRecording{
+            let videoConnection : AVCaptureConnection = self.movieOutput.connectionWithMediaType(AVMediaTypeVideo)
+            if videoConnection.supportsVideoOrientation{
+                videoConnection.videoOrientation = self.currentVideoOrientation()
+            }
+            if videoConnection.supportsVideoStabilization{
+                videoConnection.enablesVideoStabilizationWhenAvailable = true
+            }
+            
+            let device = self.activeCamera
+            
+            if device.smoothAutoFocusSupported{
+                var error: NSError?
+                if device.lockForConfiguration(&error){
+                    device.smoothAutoFocusEnabled = true
+                    device.unlockForConfiguration()
+                }
+                else{
+                   self.delegate.deviceConfigurationFailedWithError(error)
+                }
+            }
+            
+            self.outputURL = self.uniqueURL()
+            self.movieOutput.startRecordingToOutputFileURL(self.outputURL, recordingDelegate: self)
+            
+        }
+    }
+    
+    // pg: 203  - (void)stopRecording;
+    func stopRecording(){
+        if self.isRecording{
+            self.movieOutput.stopRecording()
+        }
+    }
+    
+    // helper func
+    func uniqueURL() -> NSURL?{
+        let fileManager = NSFileManager.defaultManager()
+        
+        let paths = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0] as? String
+        
+        if documentsDirectory != nil {
+        
+            var filePath:String? = documentsDirectory!.stringByAppendingPathComponent("kamera_movie.mov")
+            
+            
+            return NSURL(fileURLWithPath: filePath!)!
+        }
+        
+        return nil
+    }
+    // helper func
+    func writeVideoToAssetsLibrary(videoURL : NSURL){
+        let library = ALAssetsLibrary()
+        
+        if library.videoAtPathIsCompatibleWithSavedPhotosAlbum(videoURL){
+            var completionBlock : ALAssetsLibraryWriteVideoCompletionBlock!
+            completionBlock = {(url, error) -> Void in
+                if error != nil {
+                    self.delegate.assetLibraryWriteFailedWithError(error)
+                }
+                else{
+//                    self.gen
+                }
+            }
+            library.writeVideoAtPathToSavedPhotosAlbum(videoURL, completionBlock: { (url, error) -> Void in
+                println("video write")
+            })
+            
+        }
+    }
+    
+    // helper func 
+    func generateThumbnailForVideoAtURL(videoUrl : NSURL){
+        
+        dispatch_async(self.videoQueue, { () -> Void in
+            let asset = AVAsset.assetWithURL(videoUrl) as? AVAsset
+            
+            var imageGenerator : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+            imageGenerator.maximumSize = CGSizeMake(100.0, 0.0)
+            imageGenerator.appliesPreferredTrackTransform = true
+            
+            var cgImage : CGImage = imageGenerator.copyCGImageAtTime(kCMTimeZero, actualTime: nil, error: nil)
+            let image = UIImage(CGImage: cgImage)
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                println("image generated : ")
+            })
+            
+        })
+        
+    }
+    
+    
+    // MARK: AVCaptureFileOutputRecordingDelegate func
+    func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!){
+        
+        if error != nil {
+            self.delegate.mediaCaptureFailedWithError(error)
+        }
+        else{
+            self.writeVideoToAssetsLibrary(self.outputURL)
+        }
+        self.outputURL = nil
+    }
+    
+    
+
     
 }
 
