@@ -10,8 +10,13 @@ import UIKit
 import AVFoundation
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, THPreviewViewDelegate {
 
+    
+    let cameraController = THCameraController()
+
+    
+    
     @IBOutlet weak var previewView: THPreviewView!
     
     
@@ -20,11 +25,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var camController = THCameraController()
         
         var error : NSError?
         
-        camController.setupSession(&error)
+        if self.cameraController.setupSession(&error) {
+            self.previewView.session = self.cameraController.captureSession
+            self.previewView.delegate = self
+            
+            self.cameraController.startSession()
+        }
+        else{
+            println(error?.localizedDescription)
+        }
+
         
         
      
@@ -36,6 +49,17 @@ class ViewController: UIViewController {
     }
 
     
+    // MARK : THPreviewViewDelegate
+    func tappedToFocusAtPoint(point: CGPoint) {
+        println("tappedToFocusAtPoint")
+    }
+    
+    func tappedToExposeAtPoint(point: CGPoint) {
+        println("tappedToExposeAtPoint")
+    }
+    func tappedToResetFocusAndExposure() {
+        println("tappedToResetFocusAndExposure")
+    }
     
 
 }

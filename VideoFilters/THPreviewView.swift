@@ -17,7 +17,7 @@ let BOX_BOUNDS = CGRectMake(0.0, 0.0, 150.0, 150.0)
 protocol THPreviewViewDelegate {
     func tappedToFocusAtPoint(point: CGPoint)
     func tappedToExposeAtPoint(point: CGPoint)
-    func tappedToExposeAtPoint()
+    func tappedToResetFocusAndExposure()
 }
 
 // page no 177,178
@@ -29,11 +29,10 @@ class THPreviewView : UIView {
     
     var session : AVCaptureSession!{
         set{
-            (self.layer as? AVCaptureVideoPreviewLayer)?.setSessionWithNoConnection(newValue)
+            (self.layer as? AVCaptureVideoPreviewLayer)?.session = newValue
         }
         get{
             return (self.layer as? AVCaptureVideoPreviewLayer)?.session
-
         }
     }
     var delegate : THPreviewViewDelegate!
@@ -110,7 +109,7 @@ class THPreviewView : UIView {
     func handleDoubleDoubleTap(recognizer : UIGestureRecognizer){
         self.runResetAnimation()
         if self.delegate != nil {
-            self.delegate.tappedToExposeAtPoint()
+            self.delegate.tappedToResetFocusAndExposure()
         }
     }
 
