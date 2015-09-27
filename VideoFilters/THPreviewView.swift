@@ -77,18 +77,18 @@ class THPreviewView : UIView {
     
     func addGestures(parentVC : UIViewController){
         
-        self.singleTapRecognizer = UITapGestureRecognizer(target: parentVC.view, action: "handleSingleTap:")
+        self.singleTapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
         
-        self.doubleTapRecognizer = UITapGestureRecognizer(target: parentVC.view, action: "handleDoubleTap:")
+        self.doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "handleDoubleTap:")
         self.doubleTapRecognizer.numberOfTapsRequired = 2
         
-        self.doubleDoubleTapRecognizer = UITapGestureRecognizer(target: parentVC.view, action: "handleDoubleDoubleTap:")
+        self.doubleDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "handleDoubleDoubleTap:")
         self.doubleDoubleTapRecognizer.numberOfTapsRequired = 2
         self.doubleDoubleTapRecognizer.numberOfTouchesRequired = 2
         
-        self.addGestureRecognizer(self.singleTapRecognizer)
-        self.addGestureRecognizer(self.doubleTapRecognizer)
-        self.addGestureRecognizer(self.doubleDoubleTapRecognizer)
+        parentVC.view.addGestureRecognizer(self.singleTapRecognizer)
+        parentVC.view.addGestureRecognizer(self.doubleTapRecognizer)
+        parentVC.view.addGestureRecognizer(self.doubleDoubleTapRecognizer)
         
         self.singleTapRecognizer.requireGestureRecognizerToFail(doubleTapRecognizer)
     }

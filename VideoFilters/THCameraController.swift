@@ -67,7 +67,7 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
                 device = self.cameraWithPosition(AVCaptureDevicePosition.Front)
             }
             else{
-                device = self.cameraWithPosition(AVCaptureDevicePosition.Front)
+                device = self.cameraWithPosition(AVCaptureDevicePosition.Back)
             }
         }
         
@@ -135,6 +135,7 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
         // Set up default camera device
         let videoDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         let videoInput = AVCaptureDeviceInput.deviceInputWithDevice(videoDevice, error: &error) as? AVCaptureDeviceInput
+        
         
         if videoInput != nil {
             if self.captureSession.canAddInput(videoInput){
@@ -213,6 +214,7 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
         
         return nil
     }
+    
     //      (BOOL)switchCameras;
     func switchCameras() -> Bool{
         if !self.canSwitchCameras{
@@ -235,7 +237,6 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
             else{
                 self.captureSession.addInput(self.activeVideoInput)
             }
-            
             self.captureSession.commitConfiguration()
         }
         else{
@@ -298,17 +299,19 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
     
     // observer
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        
         if context == &THCameraAdjustingExposureContext{
-            let device : AVCaptureDevice = AVCaptureDevice()
+            let device = object as? AVCaptureDevice
             
-            if !device.adjustingExposure && device.isExposureModeSupported(AVCaptureExposureMode.Locked){
-                self.removeObserver(self, forKeyPath: "adjustingExposure", context: &THCameraAdjustingExposureContext)
+            if device != nil && !device!.adjustingExposure && device!.isExposureModeSupported(AVCaptureExposureMode.Locked){
+                
+                device!.removeObserver(self, forKeyPath: "adjustingExposure", context: &THCameraAdjustingExposureContext)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     var error : NSError?
-                    if device.lockForConfiguration(&error){
-                        device.exposureMode = AVCaptureExposureMode.Locked
-                        device.unlockForConfiguration()
+                    if device!.lockForConfiguration(&error){
+                        device!.exposureMode = AVCaptureExposureMode.Locked
+                        device!.unlockForConfiguration()
                     }
                     else{
                        self.delegate.deviceConfigurationFailedWithError(error)
