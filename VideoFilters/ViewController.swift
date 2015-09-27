@@ -38,7 +38,8 @@ class ViewController: UIViewController, THPreviewViewDelegate {
             println(error?.localizedDescription)
         }
 
-        
+        self.previewView.tapToFocusEnabled = self.cameraController.cameraSupportsTapToFocus
+        self.previewView.tapToExposeEnabled = self.cameraController.cameraSupportsTapToExpose
         
      
     }
@@ -51,16 +52,18 @@ class ViewController: UIViewController, THPreviewViewDelegate {
     
     // MARK : THPreviewViewDelegate
     func tappedToFocusAtPoint(point: CGPoint) {
+        self.cameraController.focusAtPoint(point)
         println("tappedToFocusAtPoint")
     }
     
     func tappedToExposeAtPoint(point: CGPoint) {
+        self.cameraController.exposeAtPoint(point)
         println("tappedToExposeAtPoint")
     }
     func tappedToResetFocusAndExposure() {
+        self.cameraController.resetFocusAndExposureModes()
         println("tappedToResetFocusAndExposure")
     }
-    
 
     
     
