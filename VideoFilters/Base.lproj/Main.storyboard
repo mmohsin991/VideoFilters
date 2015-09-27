@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--SwiftVC1-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="VideoFilters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="SwiftVC1" customModule="VideoFilters" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mMy-ul-ie0" customClass="THCameraView" customModule="VideoFilters" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mMy-ul-ie0">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6QX-eR-r5F" userLabel="previewView" customClass="THPreviewView" customModule="VideoFilters" customModuleProvider="target">
@@ -32,7 +32,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="start:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="V7s-EC-Mgz"/>
+                                                    <action selector="startVideo:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="W88-IB-CcD"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63E-9F-RXv">
@@ -41,7 +41,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="stop:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Kh4-Km-Y0i"/>
+                                                    <action selector="stopVideo:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7rU-Ub-bbe"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmp-qL-ckN">
@@ -50,27 +50,43 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="picture:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="O62-Vm-0m3"/>
+                                                    <action selector="captureImage:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4Hk-Ar-lD2"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIT-vl-Kbh">
+                                        <rect key="frame" x="226" y="11" width="83" height="43"/>
+                                        <state key="normal" title="Switch Cam">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="switchCamera:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ke0-EP-bdq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RVZ-Ip-CBN">
+                                        <rect key="frame" x="10" y="10" width="81" height="44"/>
+                                        <state key="normal" title="Flash Mode">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="flashMode:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tUs-4R-aVb"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="previewView" destination="6QX-eR-r5F" id="qwJ-No-Rra"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="previewView" destination="6QX-eR-r5F" id="mba-0G-Oxl"/>
+                        <outlet property="previewView" destination="6QX-eR-r5F" id="sgt-uJ-p7U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="303" y="364"/>
         </scene>
     </scenes>
 </document>

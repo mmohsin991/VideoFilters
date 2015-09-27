@@ -22,6 +22,10 @@ protocol THCameraControllerDelegate {
     func deviceConfigurationFailedWithError(error : NSError?)
     func mediaCaptureFailedWithError(error : NSError?)
     func assetLibraryWriteFailedWithError(error : NSError?)
+    func videoCaptured(videoUrl : NSURL!)
+    func imageCaptured(image : UIImage!)
+    func videoWritenToAssetsLibrary(videoUrl : NSURL!)
+
 }
 
 
@@ -70,33 +74,33 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
         return device
     }
 
-    var cameraHasTorch : Bool!{
+    var cameraHasTorch : Bool{
         get{
             return self.activeCamera.hasTorch
         }
     }
-    var cameraHasFlash : Bool!{
+    var cameraHasFlash : Bool{
         get{
             return self.activeCamera.hasFlash
         }
     }
     
-    var cameraSupportsTapToFocus : Bool!{
+    var cameraSupportsTapToFocus : Bool{
         get{
             return self.activeCamera.focusPointOfInterestSupported
         }
     }
-    var cameraSupportsTapToExpose : Bool!{
+    var cameraSupportsTapToExpose : Bool{
         get{
             return self.activeCamera.exposurePointOfInterestSupported
         }
     }
-    var torchMode : AVCaptureTorchMode!{
+    var torchMode : AVCaptureTorchMode{
         get{
             return self.activeCamera.torchMode
         }
     }
-    var flashMode : AVCaptureFlashMode!{
+    var flashMode : AVCaptureFlashMode{
         get{
             return self.activeCamera.flashMode
         }
@@ -398,8 +402,11 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
                 let image : UIImage? = UIImage(data: imageData)
                 // editiona
                 if image != nil {
+                    self.writeImageToAssetsLibrary(image!, complete: { (errorDesc) -> Void in
+                        
+                    })
                     println("image succefully captured")
-                    self.captureImage = image
+                    self.delegate.imageCaptured(image!)
                 }
             }
             else{
@@ -501,23 +508,36 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
         let library = ALAssetsLibrary()
         
         if library.videoAtPathIsCompatibleWithSavedPhotosAlbum(videoURL){
-            var completionBlock : ALAssetsLibraryWriteVideoCompletionBlock!
-            completionBlock = {(url, error) -> Void in
+            
+            library.writeVideoAtPathToSavedPhotosAlbum(videoURL, completionBlock: { (url, error) -> Void in
+                println("video write")
+
                 if error != nil {
                     self.delegate.assetLibraryWriteFailedWithError(error)
                 }
                 else{
-//                    self.gen
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.delegate.videoWritenToAssetsLibrary(url)
+                    })
                 }
-            }
-            library.writeVideoAtPathToSavedPhotosAlbum(videoURL, completionBlock: { (url, error) -> Void in
-                println("video write")
-
-                
             })
             
         }
     }
+    
+    func writeImageToAssetsLibrary(image : UIImage , complete : (errorDesc : String?) -> Void){
+        let library = ALAssetsLibrary()
+
+        library.writeImageToSavedPhotosAlbum(image.CGImage, orientation: ALAssetOrientation(rawValue: image.imageOrientation.rawValue)!, completionBlock: { (assetUrl, error) -> Void in
+            if error != nil{
+                complete(errorDesc: error.localizedDescription)
+            }
+            else{
+                complete(errorDesc: nil)
+            }
+        })
+    }
+
     
     // helper func 
     func generateThumbnailForVideoAtURL(videoUrl : NSURL){
@@ -548,15 +568,14 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
             self.delegate.mediaCaptureFailedWithError(error)
         }
         else{
+            self.delegate.videoCaptured(outputFileURL)
             self.writeVideoToAssetsLibrary(self.outputURL)
         }
         self.outputURL = nil
     }
     
-    
-
-    
 }
+
 
 
 

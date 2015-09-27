@@ -68,12 +68,21 @@ class THPreviewView : UIView {
         
         (self.layer as? AVCaptureVideoPreviewLayer)?.videoGravity = AVLayerVideoGravityResizeAspectFill
         
-        self.singleTapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
+        self.focusBox = self.viewWithColor(UIColor.greenColor())
+        self.exposureBox = self.viewWithColor(UIColor.brownColor())
         
-        self.doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "handleDoubleTap:")
+        self.addSubview(self.focusBox)
+        self.addSubview(self.exposureBox)
+    }
+    
+    func addGestures(parentVC : UIViewController){
+        
+        self.singleTapRecognizer = UITapGestureRecognizer(target: parentVC.view, action: "handleSingleTap:")
+        
+        self.doubleTapRecognizer = UITapGestureRecognizer(target: parentVC.view, action: "handleDoubleTap:")
         self.doubleTapRecognizer.numberOfTapsRequired = 2
         
-        self.doubleDoubleTapRecognizer = UITapGestureRecognizer(target: self, action: "handleDoubleDoubleTap:")
+        self.doubleDoubleTapRecognizer = UITapGestureRecognizer(target: parentVC.view, action: "handleDoubleDoubleTap:")
         self.doubleDoubleTapRecognizer.numberOfTapsRequired = 2
         self.doubleDoubleTapRecognizer.numberOfTouchesRequired = 2
         
@@ -82,12 +91,6 @@ class THPreviewView : UIView {
         self.addGestureRecognizer(self.doubleDoubleTapRecognizer)
         
         self.singleTapRecognizer.requireGestureRecognizerToFail(doubleTapRecognizer)
-        
-        self.focusBox = self.viewWithColor(UIColor.greenColor())
-        self.exposureBox = self.viewWithColor(UIColor.brownColor())
-        
-        self.addSubview(self.focusBox)
-        self.addSubview(self.exposureBox)
     }
     
     

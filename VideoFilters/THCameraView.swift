@@ -11,7 +11,7 @@ import UIKit
 class THCameraView: UIView {
 
     
-    @IBOutlet weak var previewView: THPreviewView!
+
 
     
     /*

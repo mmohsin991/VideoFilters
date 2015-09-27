@@ -10,13 +10,23 @@
 		423A78FA1BB51F0800082AEB /* MyVideoFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423A78F91BB51F0800082AEB /* MyVideoFilter.swift */; };
 		423A78FC1BB5251300082AEB /* THPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423A78FB1BB5251300082AEB /* THPreviewView.swift */; };
 		424AFD541B99BD020091E9A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424AFD531B99BD020091E9A9 /* AppDelegate.swift */; };
-		424AFD561B99BD020091E9A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424AFD551B99BD020091E9A9 /* ViewController.swift */; };
+		424AFD561B99BD020091E9A9 /* SwiftVC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424AFD551B99BD020091E9A9 /* SwiftVC1.swift */; };
 		424AFD591B99BD020091E9A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 424AFD571B99BD020091E9A9 /* Main.storyboard */; };
 		424AFD5B1B99BD020091E9A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 424AFD5A1B99BD020091E9A9 /* Images.xcassets */; };
 		424AFD5E1B99BD020091E9A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 424AFD5C1B99BD020091E9A9 /* LaunchScreen.xib */; };
 		424AFD6A1B99BD020091E9A9 /* VideoFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424AFD691B99BD020091E9A9 /* VideoFiltersTests.swift */; };
 		424AFD781B99BDA30091E9A9 /* AudioVideoMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424AFD771B99BDA30091E9A9 /* AudioVideoMerge.swift */; };
 		42AB29D31BB6BEA30002B22A /* THCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AB29D21BB6BEA30002B22A /* THCameraView.swift */; };
+		42B6539F1BB8135800C170B1 /* glow.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B653951BB8135800C170B1 /* glow.png */; };
+		42B653A01BB8135800C170B1 /* glowWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B653961BB8135800C170B1 /* glowWhite.png */; };
+		42B653A11BB8135800C170B1 /* VideoOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B653971BB8135800C170B1 /* VideoOverlay.swift */; };
+		42B653A21BB8135800C170B1 /* Miscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B653981BB8135800C170B1 /* Miscellaneous.swift */; };
+		42B653A31BB8135800C170B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B653991BB8135800C170B1 /* Constants.swift */; };
+		42B653A41BB8135800C170B1 /* MagicalSound1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 42B6539A1BB8135800C170B1 /* MagicalSound1.mp3 */; };
+		42B653A51BB8135800C170B1 /* Fairy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6539B1BB8135800C170B1 /* Fairy.swift */; };
+		42B653A61BB8135800C170B1 /* TFFairyDust.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6539C1BB8135800C170B1 /* TFFairyDust.swift */; };
+		42B653A71BB8135800C170B1 /* TFToothFairyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6539D1BB8135800C170B1 /* TFToothFairyPaths.swift */; };
+		42B653A81BB8135800C170B1 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6539E1BB8135800C170B1 /* Functions.swift */; };
 		42D416ED1BB5B61B0077C7E3 /* THCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D416EC1BB5B61B0077C7E3 /* THCameraController.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +46,7 @@
 		424AFD4E1B99BD020091E9A9 /* VideoFilters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoFilters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		424AFD521B99BD020091E9A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		424AFD531B99BD020091E9A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		424AFD551B99BD020091E9A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		424AFD551B99BD020091E9A9 /* SwiftVC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftVC1.swift; sourceTree = "<group>"; };
 		424AFD581B99BD020091E9A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		424AFD5A1B99BD020091E9A9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		424AFD5D1B99BD020091E9A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -45,6 +55,16 @@
 		424AFD691B99BD020091E9A9 /* VideoFiltersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFiltersTests.swift; sourceTree = "<group>"; };
 		424AFD771B99BDA30091E9A9 /* AudioVideoMerge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioVideoMerge.swift; sourceTree = "<group>"; };
 		42AB29D21BB6BEA30002B22A /* THCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCameraView.swift; sourceTree = "<group>"; };
+		42B653951BB8135800C170B1 /* glow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glow.png; sourceTree = "<group>"; };
+		42B653961BB8135800C170B1 /* glowWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glowWhite.png; sourceTree = "<group>"; };
+		42B653971BB8135800C170B1 /* VideoOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoOverlay.swift; sourceTree = "<group>"; };
+		42B653981BB8135800C170B1 /* Miscellaneous.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Miscellaneous.swift; sourceTree = "<group>"; };
+		42B653991BB8135800C170B1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		42B6539A1BB8135800C170B1 /* MagicalSound1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MagicalSound1.mp3; sourceTree = "<group>"; };
+		42B6539B1BB8135800C170B1 /* Fairy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fairy.swift; sourceTree = "<group>"; };
+		42B6539C1BB8135800C170B1 /* TFFairyDust.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFFairyDust.swift; sourceTree = "<group>"; };
+		42B6539D1BB8135800C170B1 /* TFToothFairyPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TFToothFairyPaths.swift; sourceTree = "<group>"; };
+		42B6539E1BB8135800C170B1 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		42D416EC1BB5B61B0077C7E3 /* THCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCameraController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,10 +117,11 @@
 		424AFD501B99BD020091E9A9 /* VideoFilters */ = {
 			isa = PBXGroup;
 			children = (
+				42B653941BB8133B00C170B1 /* VideoOverlayAnimation */,
 				424AFD531B99BD020091E9A9 /* AppDelegate.swift */,
 				424AFD771B99BDA30091E9A9 /* AudioVideoMerge.swift */,
 				423A78F91BB51F0800082AEB /* MyVideoFilter.swift */,
-				424AFD551B99BD020091E9A9 /* ViewController.swift */,
+				424AFD551B99BD020091E9A9 /* SwiftVC1.swift */,
 				423A78FD1BB5251800082AEB /* Chap6 */,
 				424AFD571B99BD020091E9A9 /* Main.storyboard */,
 				424AFD5A1B99BD020091E9A9 /* Images.xcassets */,
@@ -133,6 +154,23 @@
 				424AFD681B99BD020091E9A9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42B653941BB8133B00C170B1 /* VideoOverlayAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				42B653951BB8135800C170B1 /* glow.png */,
+				42B653961BB8135800C170B1 /* glowWhite.png */,
+				42B653971BB8135800C170B1 /* VideoOverlay.swift */,
+				42B653981BB8135800C170B1 /* Miscellaneous.swift */,
+				42B653991BB8135800C170B1 /* Constants.swift */,
+				42B6539A1BB8135800C170B1 /* MagicalSound1.mp3 */,
+				42B6539B1BB8135800C170B1 /* Fairy.swift */,
+				42B6539C1BB8135800C170B1 /* TFFairyDust.swift */,
+				42B6539D1BB8135800C170B1 /* TFToothFairyPaths.swift */,
+				42B6539E1BB8135800C170B1 /* Functions.swift */,
+			);
+			name = VideoOverlayAnimation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +253,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B6539F1BB8135800C170B1 /* glow.png in Resources */,
+				42B653A41BB8135800C170B1 /* MagicalSound1.mp3 in Resources */,
+				42B653A01BB8135800C170B1 /* glowWhite.png in Resources */,
 				424AFD591B99BD020091E9A9 /* Main.storyboard in Resources */,
 				424AFD5E1B99BD020091E9A9 /* LaunchScreen.xib in Resources */,
 				424AFD5B1B99BD020091E9A9 /* Images.xcassets in Resources */,
@@ -236,12 +277,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				423A78FC1BB5251300082AEB /* THPreviewView.swift in Sources */,
-				424AFD561B99BD020091E9A9 /* ViewController.swift in Sources */,
+				424AFD561B99BD020091E9A9 /* SwiftVC1.swift in Sources */,
+				42B653A71BB8135800C170B1 /* TFToothFairyPaths.swift in Sources */,
+				42B653A81BB8135800C170B1 /* Functions.swift in Sources */,
 				42AB29D31BB6BEA30002B22A /* THCameraView.swift in Sources */,
 				42D416ED1BB5B61B0077C7E3 /* THCameraController.swift in Sources */,
 				423A78FA1BB51F0800082AEB /* MyVideoFilter.swift in Sources */,
+				42B653A61BB8135800C170B1 /* TFFairyDust.swift in Sources */,
+				42B653A31BB8135800C170B1 /* Constants.swift in Sources */,
 				424AFD541B99BD020091E9A9 /* AppDelegate.swift in Sources */,
+				42B653A51BB8135800C170B1 /* Fairy.swift in Sources */,
+				42B653A11BB8135800C170B1 /* VideoOverlay.swift in Sources */,
 				424AFD781B99BDA30091E9A9 /* AudioVideoMerge.swift in Sources */,
+				42B653A21BB8135800C170B1 /* Miscellaneous.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
