@@ -142,6 +142,9 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
                 self.captureSession.addInput(videoInput)
                 self.activeVideoInput = videoInput
             }
+            else{
+                return false
+            }
         }
         else{
             return false
@@ -154,6 +157,9 @@ class THCameraController: NSObject, AVCaptureFileOutputRecordingDelegate {
         if audioInput != nil {
             if self.captureSession.canAddInput(audioInput){
                 self.captureSession.addInput(audioInput)
+            }
+            else{
+                return false
             }
         }
         else{

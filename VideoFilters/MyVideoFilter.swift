@@ -12,13 +12,3 @@ import AVFoundation
 
 // chap # 6 of AVFoundation
 
-class THBaseCameraController{
-    
-}
-
-
-
-class MyVideoFilter {
-    
-    
-}
