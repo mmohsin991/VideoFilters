@@ -21,6 +21,7 @@ class THCameraController1: THBaseCameraController, AVCaptureVideoDataOutputSampl
     }
     
     var recording : Bool = false
+    var imageTarget : THImageTarget!
     
     
     override func setupSessionOutputs(error : NSError) -> Bool{
@@ -54,7 +55,7 @@ class THCameraController1: THBaseCameraController, AVCaptureVideoDataOutputSampl
         
         let audioSettings = self.audioDataOutput.recommendedAudioSettingsForAssetWriterWithOutputFileType(fileType)
         
-        // temp decleration
+        // temp comment
         
 //        self.movieWriter = THMovieWriter()
 //        self.movieWriter.delegate = self
@@ -76,7 +77,16 @@ class THCameraController1: THBaseCameraController, AVCaptureVideoDataOutputSampl
     
     
     
-    
+    // MARK: delegateMethod
+    func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
+        // temp comment
+//        self.movieWriter.processSampleBuffer(sampleBuffer)
+        if captureOutput == self.videoDataOutput{
+            let imageBuffer : CVPixelBufferRef = CMSampleBufferGetImageBuffer(sampleBuffer)
+            let sourceImage = CIImage(CVPixelBuffer: imageBuffer, options: nil)
+            self.imageTarget.setImage(sourceImage)
+        }
+    }
     
     // MARK: THMovieWriterDelegate func
     func didWriteMovieAtURL(outputURL: NSURL) {
