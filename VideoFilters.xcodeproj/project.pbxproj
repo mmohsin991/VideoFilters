@@ -16,6 +16,7 @@
 		424AFD5E1B99BD020091E9A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 424AFD5C1B99BD020091E9A9 /* LaunchScreen.xib */; };
 		424AFD6A1B99BD020091E9A9 /* VideoFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424AFD691B99BD020091E9A9 /* VideoFiltersTests.swift */; };
 		424AFD781B99BDA30091E9A9 /* AudioVideoMerge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424AFD771B99BDA30091E9A9 /* AudioVideoMerge.swift */; };
+		427DBFDE1BBC4C4C00213D21 /* THMovieWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427DBFDD1BBC4C4C00213D21 /* THMovieWriter.swift */; };
 		428F3CDB1BB9807900D63685 /* THPhotoFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428F3CDA1BB9807900D63685 /* THPhotoFilters.swift */; };
 		428F3CDD1BB984BC00D63685 /* THBaseCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428F3CDC1BB984BC00D63685 /* THBaseCameraController.swift */; };
 		428F3CDF1BB986A000D63685 /* THAssetsLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428F3CDE1BB986A000D63685 /* THAssetsLibrary.swift */; };
@@ -58,6 +59,7 @@
 		424AFD681B99BD020091E9A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		424AFD691B99BD020091E9A9 /* VideoFiltersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFiltersTests.swift; sourceTree = "<group>"; };
 		424AFD771B99BDA30091E9A9 /* AudioVideoMerge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioVideoMerge.swift; sourceTree = "<group>"; };
+		427DBFDD1BBC4C4C00213D21 /* THMovieWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THMovieWriter.swift; sourceTree = "<group>"; };
 		428F3CDA1BB9807900D63685 /* THPhotoFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THPhotoFilters.swift; sourceTree = "<group>"; };
 		428F3CDC1BB984BC00D63685 /* THBaseCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THBaseCameraController.swift; sourceTree = "<group>"; };
 		428F3CDE1BB986A000D63685 /* THAssetsLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THAssetsLibrary.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				428F3CDA1BB9807900D63685 /* THPhotoFilters.swift */,
 				428F3CDC1BB984BC00D63685 /* THBaseCameraController.swift */,
 				428F3CE01BB998F100D63685 /* THCameraController1.swift */,
+				427DBFDD1BBC4C4C00213D21 /* THMovieWriter.swift */,
 			);
 			name = "Chap 8";
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				42B653A81BB8135800C170B1 /* Functions.swift in Sources */,
 				42AB29D31BB6BEA30002B22A /* THCameraView.swift in Sources */,
 				42D416ED1BB5B61B0077C7E3 /* THCameraController.swift in Sources */,
+				427DBFDE1BBC4C4C00213D21 /* THMovieWriter.swift in Sources */,
 				423A78FA1BB51F0800082AEB /* MyVideoFilter.swift in Sources */,
 				42B653A61BB8135800C170B1 /* TFFairyDust.swift in Sources */,
 				42B653A31BB8135800C170B1 /* Constants.swift in Sources */,
