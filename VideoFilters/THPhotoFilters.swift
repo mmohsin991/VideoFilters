@@ -10,7 +10,7 @@ import UIKit
 
 class THPhotoFilters: NSObject {
     
-    var filterNames : [String] = [
+    static var filterNames : [String] = [
         "CIPhotoEffectChrome",
         "CIPhotoEffectFade",
         "CIPhotoEffectInstant",
@@ -23,9 +23,9 @@ class THPhotoFilters: NSObject {
         "CIColorInvert",
     ]
     
-    var defaultFilter : CIFilter {
+    class var defaultFilter : CIFilter {
         get{
-            return CIFilter(name: self.filterNames[0])
+            return CIFilter(name: filterNames[0])
         }
     }
 
@@ -35,7 +35,7 @@ class THPhotoFilters: NSObject {
     func filterDisplayNames() -> [String]{
         var filterNamess = [String]()
         
-        for filter in self.filterNames{
+        for filter in THPhotoFilters.filterNames{
             filterNamess.append(filter)
         }
         
@@ -45,7 +45,7 @@ class THPhotoFilters: NSObject {
     
     func filterForDisplayName(displayName : String)-> CIFilter?{
         
-        for name in self.filterNames{
+        for name in THPhotoFilters.filterNames{
             if NSString(string: name).containsString(displayName){
                 return CIFilter(name: name)
             }
