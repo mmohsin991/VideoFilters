@@ -80,12 +80,28 @@ class THCameraController1: THBaseCameraController, AVCaptureVideoDataOutputSampl
     // MARK: delegateMethod
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
         self.movieWriter.processSampleBuffer(sampleBuffer)
+        
+        println("MixOutput")
+        
         if captureOutput == self.videoDataOutput{
+            println("video output")
+
             let imageBuffer : CVPixelBufferRef = CMSampleBufferGetImageBuffer(sampleBuffer)
             let sourceImage = CIImage(CVPixelBuffer: imageBuffer, options: nil)
             self.imageTarget.setImage(sourceImage)
         }
+        
+        if captureOutput == self.audioDataOutput{
+            let audioBfr = CMSampleBufferGetNumSamples(sampleBuffer)
+
+            println("audio output : \(captureOutput.description)")
+            println("audio buffer : \(audioBfr)")
+
+        }
     }
+    
+    
+    
     
     // MARK: THMovieWriterDelegate func
     func didWriteMovieAtURL(outputURL: NSURL) {

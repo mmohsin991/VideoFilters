@@ -23,11 +23,12 @@ class SwiftVC2: UIViewController {
         
         let eaglContext : EAGLContext = THContextManager.sharedInstance.eaglContext
         self.previewView = THPreviewView1(frame: frame, context: eaglContext)
-        
         self.previewView.filter = THPhotoFilters.defaultFilter
+
+        self.controller.imageTarget = self.previewView
+
         
         self.previewView.coreImageContext = THContextManager.sharedInstance.ciContext
-        
 //        self.view.insertSubview(self.previewView, aboveSubview: self.view)
         self.view.addSubview(self.previewView)
         
