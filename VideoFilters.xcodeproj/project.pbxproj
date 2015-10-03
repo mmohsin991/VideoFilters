@@ -35,6 +35,8 @@
 		42D416ED1BB5B61B0077C7E3 /* THCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D416EC1BB5B61B0077C7E3 /* THCameraController.swift */; };
 		42E56C511BBFC103006D1EF6 /* THContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E56C501BBFC103006D1EF6 /* THContextManager.swift */; };
 		42E56C531BC00332006D1EF6 /* THFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E56C521BC00332006D1EF6 /* THFunctions.swift */; };
+		42E56C551BC0443B006D1EF6 /* THPreviewView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E56C541BC0443B006D1EF6 /* THPreviewView1.swift */; };
+		42E56C571BC04990006D1EF6 /* SwiftVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E56C561BC04990006D1EF6 /* SwiftVC2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		42D416EC1BB5B61B0077C7E3 /* THCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCameraController.swift; sourceTree = "<group>"; };
 		42E56C501BBFC103006D1EF6 /* THContextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THContextManager.swift; sourceTree = "<group>"; };
 		42E56C521BC00332006D1EF6 /* THFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THFunctions.swift; sourceTree = "<group>"; };
+		42E56C541BC0443B006D1EF6 /* THPreviewView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THPreviewView1.swift; sourceTree = "<group>"; };
+		42E56C561BC04990006D1EF6 /* SwiftVC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftVC2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,7 @@
 				424AFD771B99BDA30091E9A9 /* AudioVideoMerge.swift */,
 				423A78F91BB51F0800082AEB /* MyVideoFilter.swift */,
 				424AFD551B99BD020091E9A9 /* SwiftVC1.swift */,
+				42E56C561BC04990006D1EF6 /* SwiftVC2.swift */,
 				423A78FD1BB5251800082AEB /* Chap6 */,
 				428F3CD91BB9803100D63685 /* Chap 8 */,
 				428F3CDE1BB986A000D63685 /* THAssetsLibrary.swift */,
@@ -181,6 +186,7 @@
 				427DBFDD1BBC4C4C00213D21 /* THMovieWriter.swift */,
 				42E56C501BBFC103006D1EF6 /* THContextManager.swift */,
 				42E56C521BC00332006D1EF6 /* THFunctions.swift */,
+				42E56C541BC0443B006D1EF6 /* THPreviewView1.swift */,
 			);
 			name = "Chap 8";
 			sourceTree = "<group>";
@@ -308,10 +314,12 @@
 				428F3CDB1BB9807900D63685 /* THPhotoFilters.swift in Sources */,
 				423A78FC1BB5251300082AEB /* THPreviewView.swift in Sources */,
 				424AFD561B99BD020091E9A9 /* SwiftVC1.swift in Sources */,
+				42E56C551BC0443B006D1EF6 /* THPreviewView1.swift in Sources */,
 				42B653A71BB8135800C170B1 /* TFToothFairyPaths.swift in Sources */,
 				42B653A81BB8135800C170B1 /* Functions.swift in Sources */,
 				42E56C531BC00332006D1EF6 /* THFunctions.swift in Sources */,
 				42AB29D31BB6BEA30002B22A /* THCameraView.swift in Sources */,
+				42E56C571BC04990006D1EF6 /* SwiftVC2.swift in Sources */,
 				42D416ED1BB5B61B0077C7E3 /* THCameraController.swift in Sources */,
 				427DBFDE1BBC4C4C00213D21 /* THMovieWriter.swift in Sources */,
 				423A78FA1BB51F0800082AEB /* MyVideoFilter.swift in Sources */,

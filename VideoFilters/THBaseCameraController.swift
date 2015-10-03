@@ -85,7 +85,7 @@ class THBaseCameraController: NSObject {
            return false
         }
         
-        if !self.setupSessionInputs(&error){
+        if !self.setupSessionOutputs(&error){
             return false
         }
         
@@ -134,7 +134,7 @@ class THBaseCameraController: NSObject {
         return true
     }
 //    - (BOOL)setupSessionOutputs:(NSError **)error;
-    func setupSessionOutputs(error : NSError) -> Bool{
+    func setupSessionOutputs(inout error : NSError?) -> Bool{
         return false
     }
     //- (void)startSession;

@@ -18,11 +18,6 @@ protocol THMovieWriterDelegate{
 }
 
 
-protocol THImageTarget{
-    func setImage(image : CIImage)
-}
-
-
 class THMovieWriter: NSObject {
    
     var isWriting : Bool =  false

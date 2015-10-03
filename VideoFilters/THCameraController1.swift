@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import AssetsLibrary
 
 class THCameraController1: THBaseCameraController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate, THMovieWriterDelegate{
    
@@ -24,7 +25,7 @@ class THCameraController1: THBaseCameraController, AVCaptureVideoDataOutputSampl
     var imageTarget : THImageTarget!
     
     
-    override func setupSessionOutputs(error : NSError) -> Bool{
+    override func setupSessionOutputs(inout error : NSError?) -> Bool{
         self.videoDataOutput = AVCaptureVideoDataOutput()
         let outputSettings : [NSObject : AnyObject] = [kCVPixelBufferPixelFormatTypeKey : kCVPixelFormatType_32BGRA]
         
@@ -55,10 +56,9 @@ class THCameraController1: THBaseCameraController, AVCaptureVideoDataOutputSampl
         
         let audioSettings = self.audioDataOutput.recommendedAudioSettingsForAssetWriterWithOutputFileType(fileType)
         
-        // temp comment
         
-//        self.movieWriter = THMovieWriter()
-//        self.movieWriter.delegate = self
+        self.movieWriter = THMovieWriter(videoSettings: videoSettings, audioSettings: audioSettings, dispatchQueue: self.dispatchQueue)
+        self.movieWriter.delegate = self
         
         
         return true
@@ -79,8 +79,7 @@ class THCameraController1: THBaseCameraController, AVCaptureVideoDataOutputSampl
     
     // MARK: delegateMethod
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
-        // temp comment
-//        self.movieWriter.processSampleBuffer(sampleBuffer)
+        self.movieWriter.processSampleBuffer(sampleBuffer)
         if captureOutput == self.videoDataOutput{
             let imageBuffer : CVPixelBufferRef = CMSampleBufferGetImageBuffer(sampleBuffer)
             let sourceImage = CIImage(CVPixelBuffer: imageBuffer, options: nil)
@@ -90,6 +89,16 @@ class THCameraController1: THBaseCameraController, AVCaptureVideoDataOutputSampl
     
     // MARK: THMovieWriterDelegate func
     func didWriteMovieAtURL(outputURL: NSURL) {
+        
+        let library = ALAssetsLibrary()
+        
+        if library.videoAtPathIsCompatibleWithSavedPhotosAlbum(outputURL){
+            library.writeVideoAtPathToSavedPhotosAlbum(outputURL, completionBlock: { (url, error) -> Void in
+                if error != nil {
+                    self.delegate.assetLibraryWriteFailedWithError(error)
+                }
+            })
+        }
         
     }
     
