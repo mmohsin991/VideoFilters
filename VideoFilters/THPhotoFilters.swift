@@ -25,7 +25,7 @@ class THPhotoFilters: NSObject {
     
     class var defaultFilter : CIFilter {
         get{
-            return CIFilter(name: filterNames[0])
+            return CIFilter(name: filterNames[5])
         }
     }
 

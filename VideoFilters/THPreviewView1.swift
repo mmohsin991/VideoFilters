@@ -31,7 +31,7 @@ class THPreviewView1 : GLKView, THImageTarget {
     override init(frame : CGRect, context : EAGLContext){
         super.init(frame: frame, context: context)
         self.enableSetNeedsDisplay = false
-        self.backgroundColor = UIColor.blackColor()
+        self.backgroundColor = UIColor.blueColor()
         self.opaque = false
         
         
@@ -68,6 +68,7 @@ class THPreviewView1 : GLKView, THImageTarget {
     
     // MARK: THImageTarget functions
     func setImage(sourceImage : CIImage){
+        
         self.bindDrawable()
         self.filter.setValue(sourceImage, forKey: kCIInputImageKey)
         let filteredImage = self.filter.outputImage

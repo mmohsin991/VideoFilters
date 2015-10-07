@@ -108,10 +108,12 @@ class THBaseCameraController: NSObject {
                 self.activeVideoInput = videoInput
             }
             else{
+                println("Error : setupSessionInputs")
                 return false
             }
         }
         else{
+            println("Error : setupSessionInputs")
             return false
         }
         
@@ -124,10 +126,12 @@ class THBaseCameraController: NSObject {
                 self.captureSession.addInput(audioInput)
             }
             else{
+                println("Error : setupSessionInputsAudio")
                 return false
             }
         }
         else{
+            println("Error : setupSessionInputsAudio")
             return false
         }
   
@@ -135,6 +139,7 @@ class THBaseCameraController: NSObject {
     }
 //    - (BOOL)setupSessionOutputs:(NSError **)error;
     func setupSessionOutputs(inout error : NSError?) -> Bool{
+        println("setupSessionOutputs: false")
         return false
     }
     //- (void)startSession;
